@@ -1,31 +1,25 @@
-def main():
-    while True:
-        print("\nWelcome to the book management system!")
-        print("1. Display all books")
-        print("2. Add a book")
-        print("3. Search for a book")
-        print("4. Edit a book")
-        print("5. Delete a book")
-        print("6. Quit")
-
-        choice = input("Enter your choice (1-6): ")
-        if choice == "1":
-            display_books()
-        elif choice == "2":
-            add_book()
-        elif choice == "3":
-            search_book()
-        elif choice == "4":
-            edit_book()
-        elif choice == "5":
-            delete_book()
-        elif choice == "6":
-            print("Thank you for visiting the book store, Goodbye!")
-            break
-        else:
-            print("Invalid choice. Try again.")
-
-if __name__ == "__main__":
-    main()
+# Function to add a book to the text file
+def add_book():
+   
+    book_name = input("Enter the name of the book: ")
+    author_name = input("Enter the name of the author: ")
+    price = input("Enter the price of the book: R")
+    isbn_number = input("Enter the isbn number of the book: ")
+    published_year = input("Enter the published year of the book: ")
+    category = input("Enter the category of the book: ")
+    quantity = input("Please enter the quantity of the book: ")
+        
+    book = str(book_name ) + " ," + str(author_name) + " ," +  str(price) + " ," + str(isbn_number)  + " ," + str(published_year) + " ," + str(category) + " ," + str(quantity)
+    
+    with open(book_path, 'a') as f:
+        for i in f:
+            if isbn_number in i:
+                print("Book Already exists, added a copy")
+                quantity = quantity + 1
+                f.write(f"{book_name} by {author_name},{price},{isbn_number},{published_year},{category},{quantity}\n")
+            else:
+                f.write(book+ "\n")
+        
+    print("Book Added Successfully!")
         
 
