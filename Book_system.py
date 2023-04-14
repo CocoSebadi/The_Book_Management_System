@@ -1,3 +1,4 @@
+
 # Function to search for a book in the text file
 def search_book():
     search_cat = input("search for book by category, author, genre or isbn: ")
@@ -11,10 +12,21 @@ def search_book():
                     print(line.strip())
             if not found:
                 print("Book not found in the library.")
+
+# Function to display all books in the text file
+# category = ["fiction" ,"horror", "romance" , "history","fantasy","mystery","memoir","thriller","politics"]
+book_path = "/Users/damacm172_/Desktop/Book_Store/The_Book_Management_System/Books.txt"
+def display_books():
+    try:
+        with open(book_path, "r") as file:
+            for line in file:
+                print(line.strip())
+
     except FileNotFoundError:
         print("No books found in the library.")
         
         
+
         # Main function to run the program
 def main():
     while True:
@@ -25,6 +37,7 @@ def main():
         print("4. Edit a book")
         print("5. Delete a book")
         print("6. Quit")
+
 
         choice = input("Enter your choice (1-6): ")
         if choice == "1":
