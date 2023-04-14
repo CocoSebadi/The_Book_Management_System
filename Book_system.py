@@ -1,31 +1,21 @@
-def main():
-    while True:
-        print("\nWelcome to the book management system!")
-        print("1. Display all books")
-        print("2. Add a book")
-        print("3. Search for a book")
-        print("4. Edit a book")
-        print("5. Delete a book")
-        print("6. Quit")
-
-        choice = input("Enter your choice (1-6): ")
-        if choice == "1":
-            display_books()
-        elif choice == "2":
-            add_book()
-        elif choice == "3":
-            search_book()
-        elif choice == "4":
-            edit_book()
-        elif choice == "5":
-            delete_book()
-        elif choice == "6":
-            print("Thank you for visiting the book store, Goodbye!")
-            break
-        else:
-            print("Invalid choice. Try again.")
-
-if __name__ == "__main__":
-    main()
-        
+# Function to edit a book in the text file
+def edit_book():
+    try:
+        isbn_number = input("Enter the isbn of the book to edit: ")
+        with open(book_path, "r+") as file:
+            lines = file.readlines()
+            for i, line in enumerate(lines):
+                if isbn_number in line:
+                    new_attributes = input("Enter new book attributes in the following format: 'Name,Author,Price,ISBN,Published Year,Category,Quantity': ")
+                    lines[i] = f"{new_attributes}\n"
+                    break
+            else:
+                print("Book not found!")
+                return
+            file.seek(0)
+            file.truncate()
+            file.writelines(lines)
+        print("Book edited successfully!")
+    except FileNotFoundError:
+        print("No books found in the library.")
 
